@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="main">
+      <section class="headline">
+        <h1 class="whitehead">Generate a</h1>
+        <h1>random password</h1>
+        <p class="smallhead">Never use an insecure password again.</p>
+      </section>
+      <section>
+        <button id="generate-btn">Generate passwords</button>
+
+        <div class="length">
+          <input
+            type="range"
+            id="slider"
+            name="pswlength"
+            min="0"
+            max="20"
+            value="10"
+          />
+          <label for="pswlength">Password Length</label>
+          <h3 id="slidervalue-el">10</h3>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <div class="check">
+            <label>Upper-Case</label>
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="usecaps-el" />
+                <span class="checkbox"></span>
+              </label>
+            </div>
+          </div>
+          <div class="check">
+            <label>Numbers</label>
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="usenumbers-el" />
+                <span class="checkbox"></span>
+              </label>
+            </div>
+          </div>
+          <div class="check">
+            <label>Symbols</label>
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="usesymbols-el" />
+                <span class="checkbox"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="line"></div>
+      <section class="passwords">
+        <div class="passandbtn">
+          <p class="passwordbox" id="passbox1-el"></p>
+          <button id="copy-btn1">Copy Password</button>
+        </div>
+        <div class="passandbtn">
+          <p class="passwordbox" id="passbox2-el"></p>
+          <button id="copy-btn2">Copy Password</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
+</html>
