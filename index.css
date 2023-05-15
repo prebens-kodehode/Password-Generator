@@ -74,6 +74,7 @@ label {
 
 #slider {
   -webkit-appearance: none;
+  appearance: none;
   width: 90%;
   height: 0.3rem;
   background: #ffffff;

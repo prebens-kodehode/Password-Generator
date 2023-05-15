@@ -92,21 +92,23 @@ const symbols = [
 const generateBtn = document.getElementById("generate-btn");
 const slider = document.getElementById("slider");
 const sliderValue = document.getElementById("slidervalue-el");
-const password1 = document.getElementById("passbox1-el");
-const password2 = document.getElementById("passbox2-el");
+const password1El = document.getElementById("passbox1-el");
+const password2El = document.getElementById("passbox2-el");
 const useCaps = document.getElementById("usecaps-el");
 const useNumbers = document.getElementById("usenumbers-el");
 const useSymbols = document.getElementById("usesymbols-el");
 const copyBtn1 = document.getElementById("copy-btn1");
 const copyBtn2 = document.getElementById("copy-btn2");
 
+//characters variable contains lowerAlphabet array as default
 let characters = [lowerAlphabet];
-let char = "";
-password1.textContent = "";
-password2.textContent = "";
 
-// Generates one random character and stores it in the char variable
+let randomChar = "";
+
+// Generates one random character and stores it in the randomChar variable
 function randomCharacter() {
+
+  //pushes arrays to the characters variable if they are checked
   if (useCaps.checked === true) {
     characters.push(upperAlphabet);
   }
@@ -116,28 +118,37 @@ function randomCharacter() {
   if (useSymbols.checked === true) {
     characters.push(symbols);
   }
-  let randomCharacterNumber = Math.floor(Math.random() * characters.length);
-  let randomNumber = Math.floor(
-    Math.random() * characters[randomCharacterNumber].length
-  );
-  char = characters[randomCharacterNumber][randomNumber];
 
+  // randomly picks one of the arrays stored in characters
+  let randomArray = Math.floor(Math.random() * characters.length);
+
+  //randomly picks a number within the length of the chosen array
+  let randomNumber = Math.floor(Math.random() * characters[randomArray].length);
+
+  //uses the random number to pick a character in the chosen array
+  randomChar = characters[randomArray][randomNumber];
+
+  //resets characters to only contain the default array
   characters = [lowerAlphabet];
 }
 
-// When "generate passwords" button is clicked one random character is added to each password until it matches the value of the "password length" slider
+// generates two random passwords when "generate passwords" button is clicked
 generateBtn.addEventListener("click", function () {
   let passwordLength = slider.value;
-  password1.textContent = "";
-  password2.textContent = "";
+  let randomPassword1 = "";
+  let randomPassword2 = "";
+
+  //adds a random character to each password until their length matches passwordLength
   for (let i = 0; i < passwordLength; i++) {
     if (i < passwordLength) {
       randomCharacter();
-      password1.textContent += char;
+      randomPassword1 += randomChar;
       randomCharacter();
-      password2.textContent += char;
+      randomPassword2 += randomChar;
     }
   }
+  password1El.textContent = randomPassword1
+  password2El.textContent = randomPassword2
 });
 
 // shows the value from the slider
@@ -145,11 +156,11 @@ slider.oninput = function () {
   sliderValue.textContent = this.value;
 };
 
-// copies password to clipboard
+// copies passwords to clipboard
 copyBtn1.addEventListener("click", function () {
-  navigator.clipboard.writeText(password1.textContent);
+  navigator.clipboard.writeText(password1El.textContent);
 });
 
 copyBtn2.addEventListener("click", function () {
-  navigator.clipboard.writeText(password2.textContent);
+  navigator.clipboard.writeText(password2El.textContent);
 });
